@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import makePair from 'react-wormhole'
 
-const { exit, Wormhole } = makePair()
+const { exit, Wormhole } = makePair({ mountPointStyle: {
+  color: 'yellow'
+}})
 
 export default class App extends Component {
   constructor () {
