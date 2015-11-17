@@ -61,7 +61,12 @@ export default function (options = {}) {
 
     renderToPortal (props, state) {
       if (this.exitNode != null && state.open) {
-        const content = <div ref={onDeref(props.onDestroy)}>{props.children}</div>
+        const content = (
+          <div style={props.style} ref={onDeref(props.onDestroy)}>
+            {props.children}
+          </div>
+        )
+
         this.portal = renderSubtreeIntoContainer(this, content, this.exitNode)
       }
     }
@@ -71,7 +76,10 @@ export default function (options = {}) {
     }
   }
 
-  Wormhole.propTypes = { onDestroy: PropTypes.func }
+  Wormhole.propTypes = {
+    onDestroy: PropTypes.func,
+    style: PropTypes.object
+  }
 
   return { exit, Wormhole }
 }
