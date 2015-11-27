@@ -6,11 +6,11 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer
 export default function (options = {}) {
   let exitNode = null
 
-  const tagName = typeof options.tagName == 'string'
+  const tagName = typeof options.tagName === 'string'
     ? options.tagName
     : 'div'
 
-  const styles = typeof options.mountPointStyle == 'object'
+  const styles = typeof options.mountPointStyle === 'object'
     ? options.mountPointStyle
     : {}
 
@@ -18,7 +18,7 @@ export default function (options = {}) {
     style: styles,
     ref: instance => {
       exitNode = instance
-      while (subscribers.length) {
+      while (subscribers.length > 0) {
         subscribers.pop()(instance)
       }
     }
