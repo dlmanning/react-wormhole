@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, findDOMNode } from 'react-dom'
+import { render } from 'react-dom'
 import { jsdom } from 'jsdom'
 import test from 'tape'
 import makeWormhole from '../src'
@@ -9,17 +9,22 @@ const document = jsdom('<html><body><div id="app"></div><body></html>')
 global.window = document.defaultView
 
 const App = () =>
-  <Container>
+  <Container ref={_ => console.log(_)}>
     <Widget />
   </Container>
 
-const Container = props =>
-  <div id='container'>
-    {props.children}
-    <div id='mount-point'>
-      {exit}
-    </div>
-  </div>
+class Container extends React.Component {
+  render () {
+    return (
+      <div id='container'>
+        {this.props.children}
+        <div id='mount-point'>
+          {exit}
+        </div>
+      </div>
+    )
+  }
+}
 
 Container.propTypes = {
   children: React.PropTypes.node
@@ -61,5 +66,4 @@ function runTests (instance) {
     t.ok(!widget.contains(transported), 'Transported content not rendered under <Wormhole>')
     t.end()
   })
-
 }
