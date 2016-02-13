@@ -61,11 +61,10 @@ export default function (options = {}) {
 
     renderToPortal (props, state) {
       if (this.exitNode != null && state.open) {
-        const content = (
-          <div style={props.style} ref={onDeref(props.onDestroy)}>
-            {props.children}
-          </div>
-        )
+        const content = React.createElement('div', {
+          style: props.style,
+          ref: onDeref(props.onDestroy)
+        }, props.children)
 
         this.portal = renderSubtreeIntoContainer(this, content, this.exitNode)
       }

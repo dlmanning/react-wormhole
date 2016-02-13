@@ -1,14 +1,5 @@
 {
-  "optional": [
-    "es7.objectRestSpread",
-    "es7.asyncFunctions",
-    "runtime"
-  ],
-  "blacklist": [
-    "es6.forOf",
-    "es6.blockScoping",
-    "es6.arrowFunctions"
-  ],
+  "presets": ["es2015", "react"],
   "ignore": [
     "node_modules"
   ]
