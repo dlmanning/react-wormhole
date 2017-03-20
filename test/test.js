@@ -7,9 +7,10 @@ import makeWormhole from '../src'
 const { exit, Wormhole } = makeWormhole()
 const document = jsdom('<html><body><div id="app"></div><body></html>')
 global.window = document.defaultView
+global.document = global.window.document
 
 const App = () =>
-  <Container ref={_ => console.log(_)}>
+  <Container>
     <Widget />
   </Container>
 
